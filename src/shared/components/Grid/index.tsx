@@ -6,7 +6,9 @@ type GridProps = {
 }
 
 export function Grid({ children }: GridProps) {
-  <div className={styles.container}>
-    {children}
-  </div>
+  return (
+    <div className={styles.container}>
+      {children}
+    </div>
+  )
 }

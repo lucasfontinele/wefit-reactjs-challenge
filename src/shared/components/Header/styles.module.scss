@@ -1,0 +1,38 @@
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 31.5px;
+
+  strong {
+    font-weight: bold;
+    font-size: 20px;
+    color: #FFFFFF;
+  }
+}
+
+.cartContainer {
+  display: flex;
+  column-gap: 16px;
+}
+
+.cartTitleContainer {
+  display: flex;
+  flex-direction: column;
+  row-gap: 4px;
+  align-items: flex-end;
+  color: #999999;
+  font-size: 12px;
+  
+  span {
+    font-size: 14px;
+    font-weight: 600;
+    color: #FFFF;
+  }
+
+  @media (max-width: 768px) {
+    span {
+      display: none;
+    }
+  }
+}
