@@ -1,4 +1,6 @@
+import './global.scss'
 import { QueryClientProvider, QueryClient } from '@tanstack/react-query'
+import { Router } from './presentation/navigation'
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -14,6 +16,7 @@ const queryClient = new QueryClient({
 function App() {
   return (
     <QueryClientProvider client={queryClient}>
+      <Router />
     </QueryClientProvider>
   )
 }
