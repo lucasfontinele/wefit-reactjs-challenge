@@ -1,0 +1,11 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  row-gap: 24px;
+}
+
+.cardsContainer {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, 305px);
+  gap: 16px;
+}
