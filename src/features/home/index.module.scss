@@ -9,4 +9,8 @@
   display: grid;
   grid-template-columns: repeat(auto-fit, 305px);
   gap: 16px;
+
+  @media (max-width: 768px) {
+    grid-template-columns: repeat(1, 100%);
+  }
 }

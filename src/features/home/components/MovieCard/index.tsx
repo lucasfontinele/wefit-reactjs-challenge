@@ -1,3 +1,4 @@
+import formatPrice from '../../../../shared/utils/format-price'
 import styles from './styles.module.scss'
 
 type MovieCardProps = {
@@ -11,7 +12,9 @@ export function MovieCard({ title, price, cover }: MovieCardProps) {
     <div className={styles.cardContainer}>
       <img src={cover} />
       <strong>{title}</strong>
-      <span>{price}</span>
+      <span>{formatPrice(price)}</span>
+
+      <button className={styles.btnAddToCart} type="button">Adicionar ao carrinho</button>
     </div>
   )
 }
