@@ -1,3 +1,4 @@
+import { Spinner } from "../../shared/components/Spinner"
 import { MovieCard } from "./components/MovieCard"
 import { Search } from "./components/Search"
 import styles from "./index.module.scss"
@@ -6,6 +7,8 @@ export function Home() {
   return (
     <div className={styles.container}>
       <Search />
+
+      <Spinner />
 
       <div className={styles.cardsContainer}>
         <MovieCard
