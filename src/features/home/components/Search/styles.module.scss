@@ -1,14 +1,16 @@
 .containerWrapper {
   position: relative;
   width: 100%;
-
-  .icon {
-    position: absolute;
-    right: 0;
-    top: 0;
-  }
+  display: flex;
+  flex-direction: row;
+  align-items: center;
 }
 
+.searchIcon {
+  position: absolute;
+  right: 16px;
+  top: 16px;
+}
 
 .container {
   border-radius: 8px;

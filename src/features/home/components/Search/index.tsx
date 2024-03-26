@@ -5,7 +5,9 @@ export function Search() {
   return (
     <div className={styles.containerWrapper}>
       <input placeholder="Buscar filme pelo nome" className={styles.container} type="search" />
-      <SearchIcon className="icon" />
+      <div className={styles.searchIcon}>
+        <SearchIcon />
+      </div>
     </div>
   )
 }
