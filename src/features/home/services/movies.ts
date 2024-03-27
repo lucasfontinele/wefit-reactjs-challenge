@@ -9,8 +9,8 @@ type Product = {
 
 type ProductResponse = Array<Product>
 
-export async function getMovies() {
-  const { data } = await axios.get<ProductResponse>("http://localhost:3000/products")
+export async function getMovies(searchTerm: string) {
+  const { data } = await axios.get<ProductResponse>(`http://localhost:3000/products?title=${searchTerm}`)
 
   return data
 }

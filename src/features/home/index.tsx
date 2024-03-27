@@ -1,4 +1,6 @@
 import { useQuery } from "@tanstack/react-query"
+import { ChangeEvent, useCallback, useState } from "react"
+import { useDebounce } from "react-use"
 import { Spinner } from "../../shared/components/Spinner"
 import { MovieCard } from "./components/MovieCard"
 import { Search } from "./components/Search"
@@ -6,15 +8,29 @@ import styles from "./index.module.scss"
 import { getMovies } from "./services/movies"
 
 export function Home() {
+  const [search, setSearch] = useState("")
+  const [debouncedSearch, setDebouncedSearch] = useState("");
   const { data: movies, isLoading: isFetchingMovies } = useQuery({
-    queryKey: ["GET_MOVIES"],
-    queryFn: getMovies,
+    queryKey: ["GET_MOVIES", debouncedSearch],
+    queryFn: () => getMovies(debouncedSearch),
   })
   const isLoading = isFetchingMovies;
 
+  const handleChangeSearch = useCallback((e: ChangeEvent<HTMLInputElement>) => {
+    if (!e.target.value) {
+      return;
+    }
+
+    setSearch(e.target.value)
+  }, []);
+
+  useDebounce(() => {
+    setDebouncedSearch(search)
+  }, 500, [search])
+
   return (
     <div className={styles.container}>
-      <Search />
+      <Search onChange={handleChangeSearch} />
 
       {isLoading ? <Spinner /> : (
         <div className={styles.cardsContainer}>
