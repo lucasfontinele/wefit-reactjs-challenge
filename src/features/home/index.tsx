@@ -6,6 +6,7 @@ import { MovieCard } from "./components/MovieCard"
 import { Search } from "./components/Search"
 import styles from "./index.module.scss"
 import { getMovies } from "./services/movies"
+import EmptyState from "../../shared/components/EmptyState"
 
 export function Home() {
   const [search, setSearch] = useState("")
@@ -24,15 +25,15 @@ export function Home() {
     setSearch(e.target.value)
   }, []);
 
-  useDebounce(() => {
-    setDebouncedSearch(search)
-  }, 500, [search])
+  const handleHomeContent = useCallback(() => {
+    if (!movies?.length) {
+      return <EmptyState />
+    }
 
-  return (
-    <div className={styles.container}>
-      <Search onChange={handleChangeSearch} />
+    return (
+      <>
+        <Search onChange={handleChangeSearch} />
 
-      {isLoading ? <Spinner /> : (
         <div className={styles.cardsContainer}>
           {movies?.map(movie => (
             <MovieCard
@@ -43,7 +44,17 @@ export function Home() {
             />
           ))}
         </div>
-      )}
+      </>
+    )
+  }, [movies, handleChangeSearch]);
+
+  useDebounce(() => {
+    setDebouncedSearch(search)
+  }, 500, [search])
+
+  return (
+    <div className={styles.container}>
+      {isLoading ? <Spinner /> : <>{handleHomeContent()}</>}
     </div>
   )
 }
