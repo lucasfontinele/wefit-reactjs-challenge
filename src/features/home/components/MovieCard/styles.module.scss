@@ -31,32 +31,3 @@
     width: 147px;
   }
 }
-
-.btnAddToCart {
-  width: 100%;
-  outline: none;
-
-  display: flex;
-  padding: 8px;
-  justify-content: center;
-  align-items: center;
-  gap: 12px;
-  height: 40px;
-
-  border-radius: 4px;
-  background: #009EDD;
-  border: none;
-
-  color: #FFF;
-  text-align: center;
-  font-family: "Open Sans";
-  font-size: 12px;
-  font-style: normal;
-  font-weight: 700;
-  line-height: normal;
-  text-transform: uppercase;
-
-  &:hover {
-    cursor: pointer;
-  }
-}
