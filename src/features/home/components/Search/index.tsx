@@ -1,14 +1,19 @@
-import { InputHTMLAttributes } from "react"
+import { ComponentProps } from "react"
 import SearchIcon from "../../../../shared/assets/icons/Search"
 import styles from "./styles.module.scss"
 
-export function Search({ ...props }: InputHTMLAttributes<HTMLInputElement>) {
+interface SearchProps extends ComponentProps<'input'> {
+  onSubmit: () => void;
+}
+
+export function Search({ onSubmit, ...props }: SearchProps) {
   return (
     <div className={styles.containerWrapper}>
       <input {...props} placeholder="Buscar filme pelo nome" className={styles.container} type="search" />
-      <div className={styles.searchIcon}>
+
+      <button onClick={onSubmit} className={styles.searchIcon}>
         <SearchIcon />
-      </div>
+      </button>
     </div>
   )
 }
