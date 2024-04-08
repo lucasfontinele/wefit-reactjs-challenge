@@ -6,7 +6,7 @@ interface ButtonProps extends ComponentProps<'button'> {}
 
 function Button(props: ButtonProps) {
   return (
-    <button className={clsx(styles.container, props?.className)} {...props} />
+    <button {...props} className={clsx(styles.container, props?.className)} />
   )
 }
 

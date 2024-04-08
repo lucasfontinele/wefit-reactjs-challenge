@@ -1,5 +1,5 @@
+import { useCallback, useEffect, useRef, useState } from "react"
 import { useQuery } from "@tanstack/react-query"
-import { useCallback, useRef, useState } from "react"
 import { useDebounce } from "react-use"
 import { Spinner } from "../../shared/components/Spinner"
 import { MovieCard } from "./components/MovieCard"
@@ -7,8 +7,10 @@ import { Search } from "./components/Search"
 import styles from "./index.module.scss"
 import { getMovies } from "./services/movies"
 import EmptyState from "../../shared/components/EmptyState"
+import { useNavigate, useSearchParams } from "react-router-dom"
 
 export function Home() {
+  const navigate = useNavigate()
   const searchRef = useRef<HTMLInputElement>(null)
   const [search, setSearch] = useState("")
   const [debouncedSearch, setDebouncedSearch] = useState("")
@@ -17,10 +19,11 @@ export function Home() {
     queryFn: () => getMovies(debouncedSearch),
   })
   const isLoading = isFetchingMovies
+  const [searchParams] = useSearchParams()
 
   const handleChangeSearch = useCallback((value?: string) => {
     if (!value) {
-      return;
+      return
     }
 
     setSearch(value)
@@ -55,6 +58,22 @@ export function Home() {
   useDebounce(() => {
     setDebouncedSearch(search)
   }, 3000, [search])
+
+  useEffect(() => {
+    const searchQuery = searchParams.get('search-query')
+
+    if (!searchQuery)
+      return
+
+    setDebouncedSearch(searchQuery)
+  }, [searchParams])
+
+  useEffect(() => {
+    if (!debouncedSearch)
+      return
+
+    navigate(`/search?search-query=${debouncedSearch}`)
+  }, [debouncedSearch, navigate])
 
   return (
     <div className={styles.container}>
