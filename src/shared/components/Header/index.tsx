@@ -7,9 +7,8 @@ export function Header() {
   const {items} = useCart()
 
   const handleRenderQuantity = useCallback(() => {
-    if (items.length === 0 || items.length > 1) {
+    if (items.length === 0 || items.length > 1)
       return `${items.length} itens`
-    }
 
     return `1 item`
   }, [items.length])
