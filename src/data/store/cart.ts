@@ -16,17 +16,15 @@ export type CartStore = {
 
 export const useCart = create<CartStore>((set) => ({
   addItem: (item) => set((state) => {
-    const index = state.items.find(m => m.id === item.id)
+    const index = state.items.findIndex(m => m.id === item.id)
 
-    if (index) {
+    if (index > -1) {
+      const items = [...state.items]
+
+      items[index].quantity += 1
+
       return {
-        items: [
-          ...state.items,
-          {
-            ...index,
-            quantity: index.quantity + 1,
-          }
-        ],
+        items,
       }
     }
 
