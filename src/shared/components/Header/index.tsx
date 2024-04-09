@@ -2,6 +2,7 @@ import { useCallback } from "react"
 import { BagIcon } from "../../assets/icons/Bag"
 import styles from "./styles.module.scss"
 import { useCart } from "../../../data/store/cart"
+import { Link } from "react-router-dom"
 
 export function Header() {
   const {items} = useCart()
@@ -18,10 +19,10 @@ export function Header() {
       <strong>WeMovies</strong>
 
       <div className={styles.cartContainer} data-testid="cart-testid">
-        <div className={styles.cartTitleContainer}>
+        <Link to="/cart" className={styles.cartTitleContainer}>
           <span>Meu Carrinho</span>
           <small>{handleRenderQuantity()}</small>
-        </div>
+        </Link>
 
         <BagIcon />
       </div>
