@@ -12,7 +12,7 @@ type MovieCardProps = {
 }
 
 export function MovieCard({ id, title, price, cover }: MovieCardProps) {
-  const {items} = useCart()
+  const {items, addItem} = useCart()
 
   const isMovieInTheCart = useCallback(() => {
     return items.some(item => item.id === id)
@@ -24,7 +24,7 @@ export function MovieCard({ id, title, price, cover }: MovieCardProps) {
       <strong>{title}</strong>
       <span>{formatPrice(price)}</span>
 
-      <Button className={isMovieInTheCart() ? styles.btnProductInCart : undefined} type="button">
+      <Button onClick={() => addItem({ id, title, price, image: cover })} className={isMovieInTheCart() ? styles.btnProductInCart : undefined} type="button">
         Adicionar ao carrinho
       </Button>
     </div>
