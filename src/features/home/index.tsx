@@ -45,6 +45,7 @@ export function Home() {
           {movies?.map(movie => (
             <MovieCard
               key={movie.id}
+              id={movie.id}
               title={movie.title}
               price={movie.price}
               cover={movie.image}
